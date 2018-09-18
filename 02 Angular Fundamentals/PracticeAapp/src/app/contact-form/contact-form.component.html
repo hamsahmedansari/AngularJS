@@ -1,13 +1,20 @@
-<form action="">
+<form [formGroup]="form">
 
     <div class="form-group">
-      <label for="firstName"></label>
-      <input id="firstName" type="text" name="" id="" class="form-control">
+      <label for="username"> User Name  <img *ngIf="form.get('username').pending" src="https://ak1.ostkcdn.com/img/mxc/ajax-loader-nav.gif" class="img-fluid|thumbnail rounded-top|rounded-right|rounded-bottom|rounded-left|rounded-circle|" style="width: 28px; transform: scale(4);" alt=""> </label>
+      <input formControlName="username" id="username" type="text" name=""  class="form-control invalid">
+      
+      <div *ngIf="form.get('username').touched && form.get('username').invalid" class="alert alert-danger">
+        <span *ngIf="form.get('username').errors.required">This Filed Is Required</span>
+        <span *ngIf="form.get('username').errors.minlength">minimum letter is {{form.get('username').errors.minlength.requiredLength}} </span>
+        <span *ngIf="form.get('username').errors.cannotContainSpace"> Space is Not Allowed</span>
+        <span *ngIf="form.get('username').errors.shouldBeUnique"> {{form.get('username').value}} is not available </span>
+      </div>
     </div>
     <div class="form-group">
-        <label for="Password"></label>
-        <input type="password" name="" id="" class="form-control">
+        <label for="userpassword"> Password </label>
+        <input formControlName="password" type="password" name="" id="userpassword" class="form-control">
     </div>
-    <button class="btn btn-success"></button>
+    <button class="btn btn-success"> Submit</button>
   
   </form>
